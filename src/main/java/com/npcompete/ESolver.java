@@ -42,6 +42,8 @@ public class ESolver {
                 }
             }
         }
+
+        output.writeOutput();
     }
 
     public double eval(Library lib, int remainingDays) {
