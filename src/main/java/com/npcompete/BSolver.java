@@ -33,7 +33,7 @@ public class BSolver {
 
         ArrayList<OutputLibrary> outputLibraries = new ArrayList<>();
         libraries.forEach(library -> {
-            OutputLibrary lOut = new OutputLibrary(library.books);
+            OutputLibrary lOut = new OutputLibrary(library, library.books);
             outputLibraries.add(lOut);
         });
 
