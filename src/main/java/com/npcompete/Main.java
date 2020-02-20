@@ -18,7 +18,8 @@ public class Main {
 
     public void run() {
         BSolver s = new BSolver();
-        s.solve(libraries, books);
+        Output out = s.solve(libraries, books);
+        System.out.println(out.calculateScore(D));
     }
 
     void parseIntput(char input){
