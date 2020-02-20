@@ -1,33 +1,33 @@
 package com.npcompete;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
 public class BSolver {
+    public void test(List<Library> libraries, List<Book> books) {
+        // all books are 100
+        libraries.forEach(library -> {
+            library.books.forEach(book -> {
+                if (book.score != 100) {
+                    System.out.println(book.id);
+                }
+            });
 
-    public static void main(String[] args) {
-        Library l1 = new Library();
-        l1.signup_time = 1;
-        l1.id = 1;
+            // all libraries same books, same shipping time
+            if (library.scan_capacity != 1) {
+                System.out.println(library.id);
+            }
 
-        Library l2 = new Library();
-        l2.signup_time = 5;
-        l2.id = 2;
+            if (library.books.size() != 1000) {
+                System.out.println(library.id);
+            }
+        });
 
-        Library l3 = new Library();
-        l3.signup_time = 5;
-        l3.id = 3;
-
-        ArrayList<Library> test = new ArrayList<>(Arrays.asList(
-                l1, l2, l3
-        ));
-
-        solve(test, new ArrayList<>());
+        System.out.println("all good");
     }
 
-    public static void solve(List<Library> libraries, List<Book> books) {
+    public void solve(List<Library> libraries, List<Book> books) {
         // Sort libraries on increasing sign up time
         libraries.sort(Comparator.comparingInt(l -> l.signup_time));
 

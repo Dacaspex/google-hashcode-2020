@@ -14,11 +14,11 @@ public class Main {
 
     public Main(char input) {
         parseIntput(input);
-        System.out.println(B);
     }
 
     public void run() {
-
+        BSolver s = new BSolver();
+        s.solve(libraries, books);
     }
 
     void parseIntput(char input){
@@ -64,6 +64,7 @@ public class Main {
         for (int i = 0; i < L; i++) {
             Library library = new Library();
             int N = sc.nextInt();
+            library.id = i;
             library.signup_time = sc.nextInt();
             library.scan_capacity = sc.nextInt();
             for (int j = 0; j < N; j++) {
@@ -76,6 +77,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        (new Main('a')).run();
+        (new Main('b')).run();
     }
 }
