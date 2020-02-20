@@ -10,6 +10,7 @@ public class InputPrint {
 
     boolean printBooks = true;
     boolean printLibraries = true;
+    boolean printBooksOfLibraries = true;
 
     public InputPrint(int days, ArrayList<Book> books, ArrayList<Library> libraries) {
         this.days = days;
@@ -28,9 +29,11 @@ public class InputPrint {
                 Library library = libraries.get(i);
                 System.out.println("    #" + i + " signup: " + library.signup_time + " scanCap: " + library.scan_capacity);
 
-                System.out.println("    Books:");
-                for (int j = 0; j < library.books.size(); j++) {
-                    System.out.println("        #" + j + " score: " + library.books.get(j).score);
+                if (printBooksOfLibraries) {
+                    System.out.println("    Books:");
+                    for (int j = 0; j < library.books.size(); j++) {
+                        System.out.println("        #" + j + " score: " + library.books.get(j).score);
+                    }
                 }
             }
         }
