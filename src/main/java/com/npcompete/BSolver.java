@@ -27,7 +27,7 @@ public class BSolver {
         System.out.println("all good");
     }
 
-    public void solve(List<Library> libraries, List<Book> books) {
+    public Output solve(List<Library> libraries, List<Book> books) {
         // Sort libraries on increasing sign up time
         libraries.sort(Comparator.comparingInt(l -> l.signup_time));
 
@@ -39,5 +39,7 @@ public class BSolver {
 
         Output output = new Output(outputLibraries);
         output.writeOutput();
+
+        return output;
     }
 }
