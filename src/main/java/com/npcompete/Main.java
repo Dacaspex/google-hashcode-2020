@@ -11,13 +11,21 @@ public class Main {
     int B;
     int L;
     int D;
+    long best;
 
-    public Main(char input) {
+    public Main(char input, long best) {
         parseIntput(input);
+        this.best = best;
     }
 
-    public void run() {
+    public long run() {
         ESolver s = new ESolver(books, libraries, B, L, D);
+        long score = s.output.calculateScore(D);
+        if (score > best) {
+            s.output.writeOutput();
+            return score;
+        }
+        return best;
     }
 
     void parseIntput(char input){
@@ -79,6 +87,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        (new Main('e')).run();
+        long best = 0;
+        int i = 0;
+        while (i < 100) {
+            best = new Main('e', best).run();
+            i++;
+            System.out.println(best);
+        }
+
     }
 }

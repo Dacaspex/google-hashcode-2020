@@ -12,6 +12,8 @@ public class ESolver {
     private final int l;
     private final int d;
 
+    Output output;
+
     public ESolver(ArrayList<Book> books, ArrayList<Library> libraries, int b, int l, int d) {
         this.books = books;
         this.libraries = libraries;
@@ -19,7 +21,7 @@ public class ESolver {
         this.l = l;
         this.d = d;
 
-        Output output = new Output();
+        output = new Output();
 
         for (Library lib : libraries) lib.books.sort(Comparator.comparingInt(book -> -book.score));
 
@@ -27,7 +29,7 @@ public class ESolver {
             final int finday = d - day;
             libraries.sort(Comparator.comparingDouble(library -> -eval(library, finday)));
 
-            Library lib = libraries.get(random.nextInt(3));
+            Library lib = libraries.get(random.nextInt(Math.min(10, libraries.size())));
             libraries.remove(lib);
             OutputLibrary outlib = new OutputLibrary();
             outlib.library = lib;
@@ -43,8 +45,7 @@ public class ESolver {
             }
         }
 
-        System.out.println(output.calculateScore(d));
-        output.writeOutput();
+
     }
 
     public double eval(Library lib, int remainingDays) {
