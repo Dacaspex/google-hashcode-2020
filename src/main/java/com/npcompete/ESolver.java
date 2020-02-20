@@ -29,7 +29,7 @@ public class ESolver {
             final int finday = d - day;
             libraries.sort(Comparator.comparingDouble(library -> -eval(library, finday)));
 
-            Library lib = libraries.get(random.nextInt(Math.min(10, libraries.size())));
+            Library lib = libraries.get(random.nextInt(Math.min(3, libraries.size())));
             libraries.remove(lib);
             OutputLibrary outlib = new OutputLibrary();
             outlib.library = lib;
@@ -37,15 +37,18 @@ public class ESolver {
             output.outputLibraries.add(outlib);
             day += lib.signup_time;
 
-            for (Book book : lib.books) {
+
+            long numBooksScannable = Math.min(lib.books.size(), (finday - lib.signup_time) * lib.scan_capacity);
+
+            for (int i = 0; i < numBooksScannable; i++) {
+                Book book = lib.books.get(i);
                 for (Library lib2 : book.libraries) {
                     if (lib2 == lib) continue;
+
                     lib2.books.remove(book);
                 }
             }
         }
-
-
     }
 
     public double eval(Library lib, int remainingDays) {
