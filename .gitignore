@@ -2,7 +2,6 @@
 .idea/*
 
 # Input files
-input/*
 data/*
 problem/*
 problems/*
