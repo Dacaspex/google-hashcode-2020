@@ -1,8 +1,6 @@
 package com.npcompete;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class ESolver {
 
@@ -21,9 +19,9 @@ public class ESolver {
 
         Output output = new Output();
 
-        for (Library lib : libraries) lib.books.sort(Comparator.comparingInt(book -> -book.libraries.size()));
+        for (Library lib : libraries) lib.books.sort(Comparator.comparingInt(book -> -book.score));
 
-        for (int day = 0; day < d + 10;) {
+        for (int day = 0; day < 2 * d;) {
             final int finday = d - day;
             libraries.sort(Comparator.comparingDouble(library -> -eval(library, finday)));
 
@@ -43,6 +41,7 @@ public class ESolver {
             }
         }
 
+        System.out.println(output.calculateScore(d));
         output.writeOutput();
     }
 
@@ -56,6 +55,6 @@ public class ESolver {
             i++;
         }
 
-        return score / (double) lib.signup_time;
+        return score / Math.pow(lib.signup_time, 1);
     }
 }
