@@ -67,10 +67,11 @@ public class Output {
                 if(booksScanned > numBooksScannable) break;
                 Book book = lib.scannedBooks.get(i);
 
+                booksScanned++;
                 if(countedBooks.contains(book)) {
                     continue;
                 }
-                booksScanned++;
+
                 score += book.score;
                 countedBooks.add(book);
             }

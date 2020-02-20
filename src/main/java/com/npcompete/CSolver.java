@@ -32,8 +32,8 @@ public class CSolver {
         ArrayList<Library> sortedLibraries = new ArrayList<>(libraries);
 
         while (!sortedLibraries.isEmpty()) {
-            sortedLibraries.sort(Comparator.comparingInt(compLibrary -> {
-                int totalScore = 0;
+            sortedLibraries.sort(Comparator.comparingDouble(compLibrary -> {
+                double totalScore = 0;
 
                 for (int i = 0; i < compLibrary.books.size(); i++) {
                     if (!scannedBooks.contains(compLibrary.books.get(i))) {
@@ -41,7 +41,7 @@ public class CSolver {
                     }
                 }
 
-                return compLibrary.signup_time;
+                return -((totalScore / 1.5) / (compLibrary.signup_time));
             }));
 
             Library library = sortedLibraries.get(0);
@@ -57,6 +57,7 @@ public class CSolver {
             sortedLibraries.remove(0);
         }
 
+        output.writeOutput();
         return output;
     }
 
