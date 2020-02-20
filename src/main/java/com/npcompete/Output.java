@@ -47,4 +47,26 @@ public class Output {
         }
     }
 
+    public long calculateScore(long totalDays) {
+        long score = 0;
+
+        long currentDay = 0;
+        for(OutputLibrary lib : outputLibraries) {
+            currentDay += lib.library.signup_time;
+            if (currentDay >= totalDays) break;
+
+            long daysLeft = totalDays - currentDay;
+
+            // some books may be scheduled only after the deadline
+            long numBooksScannable = Math.min(lib.scannedBooks.size(), daysLeft * lib.library.scan_capacity);
+
+            for(int i = 0; i < lib.scannedBooks.size(); i++) {
+                if(i >= numBooksScannable) break;
+                score += lib.scannedBooks.get(i).score;
+            }
+        }
+
+        return score;
+    }
+
 }
