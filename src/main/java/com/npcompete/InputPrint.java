@@ -4,18 +4,21 @@ import java.util.ArrayList;
 
 public class InputPrint {
 
+    int days;
     ArrayList<Book> books;
     ArrayList<Library> libraries;
 
     boolean printBooks = true;
     boolean printLibraries = true;
 
-    public InputPrint(ArrayList<Book> books, ArrayList<Library> libraries) {
+    public InputPrint(int days, ArrayList<Book> books, ArrayList<Library> libraries) {
+        this.days = days;
         this.books = books;
         this.libraries = libraries;
     }
 
     public void Print() {
+        System.out.println("Number of days: " + days);
         System.out.println("Number of books: " + books.size());
         System.out.println("Number of libraries: " + libraries.size());
 
