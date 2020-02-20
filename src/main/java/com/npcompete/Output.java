@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Output {
 
@@ -49,6 +50,8 @@ public class Output {
     public long calculateScore(long totalDays) {
         long score = 0;
 
+        HashSet<Book> countedBooks = new HashSet<>();
+
         long currentDay = 0;
         for(OutputLibrary lib : outputLibraries) {
             currentDay += lib.library.signup_time;
@@ -59,9 +62,17 @@ public class Output {
             // some books may be scheduled only after the deadline
             long numBooksScannable = Math.min(lib.scannedBooks.size(), daysLeft * lib.library.scan_capacity);
 
+            long booksScanned = 0;
             for(int i = 0; i < lib.scannedBooks.size(); i++) {
-                if(i >= numBooksScannable) break;
-                score += lib.scannedBooks.get(i).score;
+                if(booksScanned > numBooksScannable) break;
+                Book book = lib.scannedBooks.get(i);
+
+                if(countedBooks.contains(book)) {
+                    continue;
+                }
+                booksScanned++;
+                score += book.score;
+                countedBooks.add(book);
             }
         }
 
