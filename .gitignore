@@ -1,3 +1,12 @@
+# IDEA
+.idea/*
+
+# Input files
+input/*
+data/*
+problem/*
+problems/*
+
 # Compiled class file
 *.class
 
