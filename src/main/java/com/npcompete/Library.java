@@ -7,4 +7,12 @@ public class Library {
     int id;
     int signup_time;
     int scan_capacity;
+
+    long sumOfScores() {
+        long score = 0;
+        for(Book book: books) {
+            score += book.score;
+        }
+        return score;
+    }
 }
