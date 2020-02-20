@@ -4,6 +4,8 @@ import java.util.*;
 
 public class ESolver {
 
+    Random random = new Random();
+
     private final ArrayList<Book> books;
     private final ArrayList<Library> libraries;
     private final int b;
@@ -21,12 +23,12 @@ public class ESolver {
 
         for (Library lib : libraries) lib.books.sort(Comparator.comparingInt(book -> -book.score));
 
-        for (int day = 0; day < 2 * d;) {
+        for (int day = 0; day < 2 * d && !libraries.isEmpty();) {
             final int finday = d - day;
             libraries.sort(Comparator.comparingDouble(library -> -eval(library, finday)));
 
-            Library lib = libraries.get(0);
-            libraries.remove(0);
+            Library lib = libraries.get(random.nextInt(3));
+            libraries.remove(lib);
             OutputLibrary outlib = new OutputLibrary();
             outlib.library = lib;
             outlib.scannedBooks = lib.books;
@@ -55,6 +57,6 @@ public class ESolver {
             i++;
         }
 
-        return score / Math.pow(lib.signup_time, 1);
+        return score / Math.pow(lib.signup_time, 0.88);
     }
 }

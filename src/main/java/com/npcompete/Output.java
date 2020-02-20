@@ -62,15 +62,10 @@ public class Output {
             // some books may be scheduled only after the deadline
             long numBooksScannable = Math.min(lib.scannedBooks.size(), daysLeft * lib.library.scan_capacity);
 
-            long booksScanned = 0;
-            for(int i = 0; i < lib.scannedBooks.size(); i++) {
-                if(booksScanned > numBooksScannable) break;
-                Book book = lib.scannedBooks.get(i);
 
-                if(countedBooks.contains(book)) {
-                    continue;
-                }
-                booksScanned++;
+            for (int i = 0; i < numBooksScannable; i++) {
+                Book book = lib.scannedBooks.get(i);
+                if (countedBooks.contains(book)) continue;
                 score += book.score;
                 countedBooks.add(book);
             }

@@ -17,12 +17,13 @@ public class Main {
     }
 
     public void run() {
-        BSolver s = new BSolver();
-        Output out = s.solve(libraries, books);
-        System.out.println(out.calculateScore(D));
+        ESolver s = new ESolver(books, libraries, B, L, D);
     }
 
     void parseIntput(char input){
+        libraries = new ArrayList<>();
+        books = new ArrayList<>();
+
         File file = null;
         switch(input) {
             case 'a':
@@ -78,6 +79,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        (new Main('b')).run();
+        (new Main('e')).run();
     }
 }
